@@ -1,128 +1,144 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
+<!DOCTYPE html>
+<html lang="en">
 
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
+<head>
 
-<title>Profile | Debryne New Age Bank</title>
+    <meta charset="UTF-8">
 
-<link
-    rel="stylesheet"
-    href="profile.css"
->
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-</head><body><div class="profile-app"><!-- HEADER -->
+    <title>Profile | Debryne New Age Bank</title>
 
-<header class="profile-header">
+    <link
+        rel="stylesheet"
+        href="profile.css"
+    >
 
-    <a href="dashboard.html" class="back-btn">
-        ←
-    </a>
+</head>
 
-    <h2>My Profile</h2>
+<body>
 
-</header>
+<div class="profile-app">
 
+    <!-- HEADER -->
 
-<!-- PROFILE -->
+    <header class="profile-header">
 
-<main class="profile-content">
+        <a href="dashboard.html" class="back-btn">
+            ←
+        </a>
 
+        <h2>My Profile</h2>
 
-    <div class="profile-avatar">
-        👤
-    </div>
-
-
-    <h1 id="profileName">
-        Customer
-    </h1>
+    </header>
 
 
-    <p id="profileEmail">
-        Loading...
-    </p>
+    <!-- PROFILE -->
 
+    <main class="profile-content">
 
-    <!-- ACCOUNT INFORMATION -->
-
-    <section class="profile-card">
-
-        <h3>Account Information</h3>
-
-
-        <div class="profile-row">
-
-            <span>Full Name</span>
-
-            <strong id="fullName">
-                Loading...
-            </strong>
-
+        <div class="profile-avatar">
+            👤
         </div>
 
 
-        <div class="profile-row">
-
-            <span>Email Address</span>
-
-            <strong id="email">
-                Loading...
-            </strong>
-
-        </div>
+        <h1 id="profileName">
+            Customer
+        </h1>
 
 
-        <div class="profile-row">
-
-            <span>Account Number</span>
-
-            <strong id="accountNumber">
-                •••• •••• 4521
-            </strong>
-
-        </div>
-
-    </section>
+        <p id="profileEmail">
+            Loading...
+        </p>
 
 
-    <!-- SECURITY -->
+        <!-- ACCOUNT INFORMATION -->
 
-    <section class="profile-card">
+        <section class="profile-card">
 
-        <h3>Security</h3>
+            <h3>Account Information</h3>
 
 
-        <button class="profile-action">
-            🔐 Change Password
+            <div class="profile-row">
+
+                <span>Full Name</span>
+
+                <strong id="fullName">
+                    Loading...
+                </strong>
+
+            </div>
+
+
+            <div class="profile-row">
+
+                <span>Email Address</span>
+
+                <strong id="email">
+                    Loading...
+                </strong>
+
+            </div>
+
+
+            <div class="profile-row">
+
+                <span>Account Number</span>
+
+                <strong id="accountNumber">
+                    •••• •••• 4521
+                </strong>
+
+            </div>
+
+        </section>
+
+
+        <!-- SECURITY -->
+
+        <section class="profile-card">
+
+            <h3>Security</h3>
+
+
+            <button class="profile-action">
+                🔐 Change Password
+            </button>
+
+
+            <button class="profile-action">
+                🛡️ Security Settings
+            </button>
+
+        </section>
+
+
+        <!-- LOGOUT -->
+
+        <button
+            id="logoutBtn"
+            class="logout-btn"
+        >
+            🚪 Logout
         </button>
 
 
-        <button class="profile-action">
-            🛡️ Security Settings
-        </button>
-
-    </section>
+        <p class="bank-tagline">
+            Banking Beyond Today.
+        </p>
 
 
-    <!-- LOGOUT -->
+    </main>
 
-    <button id="logoutBtn" class="logout-btn">
-
-        🚪 Logout
-
-    </button>
+</div>
 
 
-    <p class="bank-tagline">
-        Banking Beyond Today.
-    </p>
+<!-- FIREBASE -->
 
-
-</main>
-
-</div><!-- FIREBASE --><script type="module">
+<script type="module">
 
     import { initializeApp }
         from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
@@ -141,22 +157,22 @@
         apiKey: "AIzaSyChb5YDplwEUqxYBQdkpNTlqK6XyrZ9v6s",
 
         authDomain:
-        "debryne-new-age-bank.firebaseapp.com",
+            "debryne-new-age-bank.firebaseapp.com",
 
         projectId:
-        "debryne-new-age-bank",
+            "debryne-new-age-bank",
 
         storageBucket:
-        "debryne-new-age-bank.firebasestorage.app",
+            "debryne-new-age-bank.firebasestorage.app",
 
         messagingSenderId:
-        "712684201242",
+            "712684201242",
 
         appId:
-        "1:712684201242:web:5ab3dc41734dec5e3a78a3",
+            "1:712684201242:web:5ab3dc41734dec5e3a78a3",
 
         measurementId:
-        "G-NP062V5XTZ"
+            "G-NP062V5XTZ"
 
     };
 
@@ -176,8 +192,12 @@
                 user.email || "Customer";
 
 
+            const name =
+                email.split("@")[0];
+
+
             document.getElementById("profileName")
-                .textContent = email.split("@")[0];
+                .textContent = name;
 
 
             document.getElementById("profileEmail")
@@ -185,19 +205,11 @@
 
 
             document.getElementById("fullName")
-                .textContent =
-                email.split("@")[0];
+                .textContent = name;
 
 
             document.getElementById("email")
                 .textContent = email;
-
-        }
-
-        else {
-
-            window.location.href =
-                "login.html";
 
         }
 
@@ -228,4 +240,8 @@
 
         });
 
-</script></body></html>
+</script>
+
+</body>
+
+</html>
