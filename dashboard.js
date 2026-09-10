@@ -1,40 +1,469 @@
-const balance = document.getElementById("balance");
-const hideBalance = document.getElementById("hideBalance");
+<!DOCTYPE html>
+<html lang="en">
 
-let balanceVisible = true;
+<head>
 
-hideBalance.addEventListener("click", function () {
+    <meta charset="UTF-8">
 
-    if (balanceVisible) {
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-        balance.textContent = "₦••••••••";
-        hideBalance.textContent = "🙈";
+    <title>Dashboard | Debryne New Age Bank</title>
 
-        balanceVisible = false;
+    <link rel="stylesheet" href="dashboard.css">
 
-    } else {
+</head>
 
-        balance.textContent = "₦250,000.00";
-        hideBalance.textContent = "👁️";
+<body>
 
-        balanceVisible = true;
+
+<!-- TOP BAR -->
+
+<header class="topbar">
+
+    <div>
+
+        <p class="small-text">
+            Welcome back
+        </p>
+
+        <h2 id="userName">
+            Customer 👋
+        </h2>
+
+    </div>
+
+
+    <button class="notification-btn">
+        🔔
+    </button>
+
+</header>
+
+
+
+<!-- MAIN CONTENT -->
+
+<main>
+
+
+    <!-- BALANCE CARD -->
+
+    <section class="balance-card">
+
+        <div class="balance-header">
+
+            <span>
+                Total Balance
+            </span>
+
+
+            <button id="hideBalance">
+                👁️
+            </button>
+
+        </div>
+
+
+        <h1 id="balance">
+            ₦250,000.00
+        </h1>
+
+
+        <p>
+            Available Balance
+        </p>
+
+
+        <div class="account-number">
+
+            <span>
+                Account Number
+            </span>
+
+
+            <strong>
+                •••• •••• 4521
+            </strong>
+
+
+            <button onclick="copyAccount()">
+                📋
+            </button>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- QUICK ACTIONS -->
+
+    <section class="quick-actions">
+
+        <h3>
+            Quick Actions
+        </h3>
+
+
+        <div class="action-grid">
+
+
+            <button
+                onclick="openPage('transfer.html')"
+            >
+
+                <span>
+                    💸
+                </span>
+
+                <small>
+                    Transfer
+                </small>
+
+            </button>
+
+
+            <button
+                onclick="openPage('deposit.html')"
+            >
+
+                <span>
+                    ➕
+                </span>
+
+                <small>
+                    Deposit
+                </small>
+
+            </button>
+
+
+            <button
+                onclick="openPage('withdraw.html')"
+            >
+
+                <span>
+                    💰
+                </span>
+
+                <small>
+                    Withdraw
+                </small>
+
+            </button>
+
+
+            <button
+                onclick="openPage('airtime.html')"
+            >
+
+                <span>
+                    📱
+                </span>
+
+                <small>
+                    Airtime
+                </small>
+
+            </button>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- RECENT TRANSACTIONS -->
+
+    <section class="transactions">
+
+
+        <div class="section-title">
+
+            <h3>
+                Recent Transactions
+            </h3>
+
+
+            <a href="transactions.html">
+                See All
+            </a>
+
+        </div>
+
+
+
+        <div class="transaction">
+
+            <div class="transaction-icon">
+                📥
+            </div>
+
+
+            <div class="transaction-info">
+
+                <strong>
+                    Salary
+                </strong>
+
+
+                <small>
+                    Today • 10:42 AM
+                </small>
+
+            </div>
+
+
+            <strong class="credit">
+                +₦80,000
+            </strong>
+
+        </div>
+
+
+
+        <div class="transaction">
+
+            <div class="transaction-icon">
+                📤
+            </div>
+
+
+            <div class="transaction-info">
+
+                <strong>
+                    John Transfer
+                </strong>
+
+
+                <small>
+                    Yesterday • 4:20 PM
+                </small>
+
+            </div>
+
+
+            <strong class="debit">
+                -₦15,000
+            </strong>
+
+        </div>
+
+
+
+        <div class="transaction">
+
+            <div class="transaction-icon">
+                🛒
+            </div>
+
+
+            <div class="transaction-info">
+
+                <strong>
+                    Online Purchase
+                </strong>
+
+
+                <small>
+                    Yesterday • 12:15 PM
+                </small>
+
+            </div>
+
+
+            <strong class="debit">
+                -₦8,500
+            </strong>
+
+        </div>
+
+
+    </section>
+
+</main>
+
+
+
+<!-- BOTTOM NAVIGATION -->
+
+<nav class="bottom-nav">
+
+
+    <a
+        href="dashboard.html"
+        class="active"
+    >
+
+        🏠
+
+        <span>
+            Home
+        </span>
+
+    </a>
+
+
+
+    <a href="transactions.html">
+
+        📊
+
+        <span>
+            History
+        </span>
+
+    </a>
+
+
+
+    <a href="transfer.html">
+
+        💸
+
+        <span>
+            Transfer
+        </span>
+
+    </a>
+
+
+
+    <a href="profile.html">
+
+        👤
+
+        <span>
+            Profile
+        </span>
+
+    </a>
+
+
+</nav>
+
+
+
+<!-- FIREBASE -->
+
+<script type="module">
+
+
+    import { initializeApp }
+        from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+
+
+    import {
+
+        getAuth,
+
+        onAuthStateChanged,
+
+        setPersistence,
+
+        browserLocalPersistence
 
     }
-
-});
-
-
-function copyAccount() {
-
-    navigator.clipboard.writeText("0123454521");
-
-    alert("Account number copied!");
-
-}
+        from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
 
 
-function openPage(page) {
 
-    alert("This feature will be connected next.");
+    /* FIREBASE CONFIG */
 
-}
+    const firebaseConfig = {
+
+        apiKey:
+            "AIzaSyChb5YDplwEUqxYBQdkpNTlqK6XyrZ9v6s",
+
+        authDomain:
+            "debryne-new-age-bank.firebaseapp.com",
+
+        projectId:
+            "debryne-new-age-bank",
+
+        storageBucket:
+            "debryne-new-age-bank.firebasestorage.app",
+
+        messagingSenderId:
+            "712684201242",
+
+        appId:
+            "1:712684201242:web:5ab3dc41734dec5e3a78a3",
+
+        measurementId:
+            "G-NP062V5XTZ"
+
+    };
+
+
+
+    /* START FIREBASE */
+
+    const app =
+        initializeApp(firebaseConfig);
+
+
+    const auth =
+        getAuth(app);
+
+
+
+    /* KEEP USER LOGGED IN */
+
+    setPersistence(
+        auth,
+        browserLocalPersistence
+    );
+
+
+
+    /* CHECK USER */
+
+    onAuthStateChanged(
+        auth,
+        (user) => {
+
+            if (user) {
+
+                const email =
+                    user.email ||
+                    "Customer";
+
+
+                document
+                    .getElementById("userName")
+                    .textContent =
+                    email +
+                    " 👋";
+
+            }
+
+            else {
+
+                document
+                    .getElementById("userName")
+                    .textContent =
+                    "Customer 👋";
+
+            }
+
+        }
+    );
+
+
+</script>
+
+
+
+<!-- DASHBOARD JAVASCRIPT -->
+
+<script src="dashboard.js"></script>
+
+
+</body>
+
+</html>
