@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Transfer Successful | Debryne New Age Bank</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: #f4f7fb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .success-card {
+            width: 100%;
+            max-width: 430px;
+            background: white;
+            border-radius: 25px;
+            padding: 40px 25px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        }
+
+        .check {
+            width: 85px;
+            height: 85px;
+            border-radius: 50%;
+            background: #071a3d;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: auto;
+            font-size: 45px;
+        }
+
+        h1 {
+            color: #071a3d;
+            margin-top: 25px;
+        }
+
+        p {
+            color: #888;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .reference {
+            background: #f4f7fb;
+            border-radius: 12px;
+            padding: 15px;
+            margin: 25px 0;
+            font-size: 12px;
+        }
+
+        button {
+            width: 100%;
+            height: 52px;
+            border: none;
+            border-radius: 12px;
+            background: #071a3d;
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="success-card">
+
+        <div class="check">
+            ✓
+        </div>
+
+        <h1>Transfer Successful!</h1>
+
+        <p>
+            Your demo transfer has been processed successfully.
+        </p>
+
+        <div class="reference">
+
+            Transaction Reference
+
+            <br><br>
+
+            <strong id="reference"></strong>
+
+        </div>
+
+        <button onclick="goHome()">
+            BACK TO DASHBOARD
+        </button>
+
+    </div>
+
+
+    <script>
+
+        const reference =
+            "DNAB" +
+            Date.now().toString().slice(-8);
+
+        document.getElementById("reference")
+            .textContent = reference;
+
+
+        function goHome() {
+
+            window.location.href =
+                "dashboard.html";
+
+        }
+
+    </script>
+
+</body>
+
+</html>
