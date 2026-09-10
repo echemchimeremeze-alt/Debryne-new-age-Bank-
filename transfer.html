@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Transfer | Debryne New Age Bank</title>
+
+    <link rel="stylesheet" href="transfer.css">
+</head>
+
+<body>
+
+<header class="header">
+
+    <button onclick="goBack()">←</button>
+
+    <h2>Send Money</h2>
+
+    <div></div>
+
+</header>
+
+
+<main>
+
+    <div class="page-intro">
+        <div class="money-icon">💸</div>
+
+        <h1>Transfer Money</h1>
+
+        <p>Send money securely to another account.</p>
+    </div>
+
+
+    <form id="transferForm">
+
+        <label>Recipient Account Number</label>
+
+        <input
+            type="text"
+            id="accountNumber"
+            placeholder="Enter 10-digit account number"
+            maxlength="10"
+            inputmode="numeric"
+            required
+        >
+
+
+        <label>Bank</label>
+
+        <select id="bank" required>
+
+            <option value="">Select bank</option>
+
+            <option>Debryne New Age Bank</option>
+            <option>Access Bank</option>
+            <option>GTBank</option>
+            <option>First Bank</option>
+            <option>UBA</option>
+            <option>Zenith Bank</option>
+            <option>Opay</option>
+            <option>Moniepoint</option>
+
+        </select>
+
+
+        <label>Amount</label>
+
+        <div class="amount-box">
+
+            <span>₦</span>
+
+            <input
+                type="number"
+                id="amount"
+                placeholder="0.00"
+                min="1"
+                required
+            >
+
+        </div>
+
+
+        <label>Description <span>(Optional)</span></label>
+
+        <input
+            type="text"
+            id="description"
+            placeholder="What's this payment for?"
+            maxlength="50"
+        >
+
+
+        <div class="fee-box">
+
+            <div>
+                <span>Transfer fee</span>
+                <strong>₦0.00</strong>
+            </div>
+
+            <div>
+                <span>Total</span>
+                <strong id="total">₦0.00</strong>
+            </div>
+
+        </div>
+
+
+        <button type="submit" class="continue-btn">
+            CONTINUE
+        </button>
+
+    </form>
+
+</main>
+
+
+<script src="transfer.js"></script>
+
+</body>
+</html>
