@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Confirm Transfer | Debryne New Age Bank</title>
+
+    <link rel="stylesheet" href="confirm-transfer.css">
+</head>
+
+<body>
+
+<header class="header">
+    <button onclick="goBack()">←</button>
+    <h2>Confirm Transfer</h2>
+    <div></div>
+</header>
+
+
+<main>
+
+    <div class="success-icon">
+        ✓
+    </div>
+
+    <h1>Review Transfer</h1>
+
+    <p class="subtitle">
+        Please confirm the details before continuing.
+    </p>
+
+
+    <section class="details-card">
+
+        <div class="detail">
+            <span>Recipient</span>
+            <strong id="recipientName">John Doe</strong>
+        </div>
+
+        <div class="detail">
+            <span>Account Number</span>
+            <strong id="recipientAccount">0123456789</strong>
+        </div>
+
+        <div class="detail">
+            <span>Bank</span>
+            <strong id="recipientBank">Debryne New Age Bank</strong>
+        </div>
+
+        <div class="detail">
+            <span>Description</span>
+            <strong id="description">Payment</strong>
+        </div>
+
+        <div class="amount-detail">
+            <span>Amount</span>
+            <strong id="transferAmount">₦50,000.00</strong>
+        </div>
+
+        <div class="detail">
+            <span>Transfer Fee</span>
+            <strong>₦0.00</strong>
+        </div>
+
+        <div class="total-detail">
+            <span>Total</span>
+            <strong id="totalAmount">₦50,000.00</strong>
+        </div>
+
+    </section>
+
+
+    <button class="confirm-btn" onclick="showPinScreen()">
+        CONFIRM & CONTINUE
+    </button>
+
+    <button class="cancel-btn" onclick="goBack()">
+        CANCEL
+    </button>
+
+</main>
+
+
+<!-- PIN MODAL -->
+
+<div id="pinModal" class="modal">
+
+    <div class="modal-content">
+
+        <button class="close-btn" onclick="closePinScreen()">
+            ×
+        </button>
+
+        <div class="lock-icon">
+            🔐
+        </div>
+
+        <h2>Enter Transaction PIN</h2>
+
+        <p>
+            Enter your 4-digit PIN to authorize this transaction.
+        </p>
+
+        <div class="pin-box">
+
+            <input type="password" maxlength="1" inputmode="numeric">
+            <input type="password" maxlength="1" inputmode="numeric">
+            <input type="password" maxlength="1" inputmode="numeric">
+            <input type="password" maxlength="1" inputmode="numeric">
+
+        </div>
+
+        <button class="pin-btn" onclick="processTransfer()">
+            AUTHORIZE TRANSFER
+        </button>
+
+    </div>
+
+</div>
+
+
+<script src="confirm-transfer.js"></script>
+
+</body>
+</html>
