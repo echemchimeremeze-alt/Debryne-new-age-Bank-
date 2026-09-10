@@ -1,0 +1,208 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f4f7fb;
+    color: #111;
+}
+
+.header {
+    height: 70px;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.header button {
+    border: none;
+    background: #f1f4f8;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 22px;
+}
+
+.header h2 {
+    color: #071a3d;
+    font-size: 18px;
+}
+
+main {
+    max-width: 550px;
+    margin: auto;
+    padding: 30px 20px;
+}
+
+.success-icon {
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    background: #071a3d;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    font-size: 30px;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 18px;
+    font-size: 25px;
+}
+
+.subtitle {
+    text-align: center;
+    color: #888;
+    font-size: 13px;
+    margin-top: 7px;
+}
+
+.details-card {
+    background: white;
+    border-radius: 20px;
+    margin-top: 30px;
+    padding: 20px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+
+.detail,
+.total-detail,
+.amount-detail {
+    display: flex;
+    justify-content: space-between;
+    padding: 14px 0;
+    border-bottom: 1px solid #eee;
+    gap: 20px;
+}
+
+.detail span,
+.total-detail span,
+.amount-detail span {
+    color: #888;
+    font-size: 13px;
+}
+
+.detail strong {
+    font-size: 13px;
+    text-align: right;
+}
+
+.amount-detail strong {
+    font-size: 18px;
+    color: #071a3d;
+}
+
+.total-detail {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.total-detail strong {
+    font-size: 20px;
+    color: #071a3d;
+}
+
+.confirm-btn,
+.cancel-btn,
+.pin-btn {
+    width: 100%;
+    height: 53px;
+    border-radius: 12px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.confirm-btn {
+    border: none;
+    background: #071a3d;
+    color: white;
+    margin-top: 25px;
+}
+
+.cancel-btn {
+    background: white;
+    border: 1px solid #ddd;
+    color: #555;
+    margin-top: 12px;
+}
+
+
+/* PIN MODAL */
+
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+    justify-content: center;
+    align-items: flex-end;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: white;
+    width: 100%;
+    max-width: 550px;
+    border-radius: 25px 25px 0 0;
+    padding: 30px 25px;
+    text-align: center;
+}
+
+.close-btn {
+    float: right;
+    border: none;
+    background: #f1f1f1;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    font-size: 22px;
+}
+
+.lock-icon {
+    font-size: 35px;
+    margin-top: 20px;
+}
+
+.modal-content h2 {
+    margin-top: 12px;
+    color: #071a3d;
+}
+
+.modal-content p {
+    color: #888;
+    font-size: 13px;
+    margin-top: 8px;
+    line-height: 1.5;
+}
+
+.pin-box {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin: 25px 0;
+}
+
+.pin-box input {
+    width: 55px;
+    height: 55px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    text-align: center;
+    font-size: 22px;
+    outline: none;
+}
+
+.pin-btn {
+    border: none;
+    background: #071a3d;
+    color: white;
+}
