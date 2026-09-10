@@ -1,98 +1,119 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Login | Debryne New Age Bank</title>
 
-<link rel="stylesheet" href="style.css">
-
-</head><body><div class="bank-container"><div class="logo-area">
-
-    <div class="logo">D</div>
-
-    <h1>DEBRYNE</h1>
-
-    <p>NEW AGE BANK</p>
-
-</div>
-
-
-<div class="welcome">
-
-    <h2>Welcome Back 🏦</h2>
-
-    <p>Login to your Debryne New Age Bank account</p>
-
-</div>
-
-
-<form id="loginForm">
-
-    <label>Email Address</label>
-
-    <input
-        type="email"
-        id="email"
-        placeholder="Enter your email"
-        required
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
     >
 
+    <title>Login | Debryne New Age Bank</title>
 
-    <label>Password</label>
+    <link rel="stylesheet" href="style.css">
 
-    <div class="password-box">
+</head>
 
-        <input
-            type="password"
-            id="password"
-            placeholder="Enter your password"
-            required
-        >
+<body>
 
-        <button
-            type="button"
-            id="showPassword"
-        >
-            👁️
-        </button>
+<div class="bank-container">
+
+    <div class="logo-area">
+
+        <div class="logo">D</div>
+
+        <h1>DEBRYNE</h1>
+
+        <p>NEW AGE BANK</p>
 
     </div>
 
 
-    <button
-        type="submit"
-        class="login-btn"
-    >
-        LOGIN
-    </button>
+    <div class="welcome">
 
-</form>
+        <h2>Welcome Back 🏦</h2>
+
+        <p>
+            Login to your Debryne New Age Bank account
+        </p>
+
+    </div>
 
 
-<div class="back-login">
+    <form id="loginForm">
 
-    Don't have an account?
+        <label>Email Address</label>
 
-    <a href="index.html">
-        Create Account
-    </a>
+        <input
+            type="email"
+            id="email"
+            placeholder="Enter your email"
+            required
+        >
+
+
+        <label>Password</label>
+
+        <div class="password-box">
+
+            <input
+                type="password"
+                id="password"
+                placeholder="Enter your password"
+                required
+            >
+
+            <button
+                type="button"
+                id="showPassword"
+            >
+                👁️
+            </button>
+
+        </div>
+
+
+        <button
+            type="submit"
+            class="login-btn"
+            id="loginBtn"
+        >
+            LOGIN
+        </button>
+
+    </form>
+
+
+    <div class="back-login">
+
+        Don't have an account?
+
+        <a href="index.html">
+            Create Account
+        </a>
+
+    </div>
+
+
+    <p class="security">
+        🔒 Your information is securely protected
+    </p>
+
+
+    <footer>
+
+        <p>© 2026 Debryne New Age Bank</p>
+
+        <p>Banking Beyond Today.</p>
+
+    </footer>
 
 </div>
 
 
-<p class="security">
-    🔒 Your information is securely protected
-</p>
-
-
-<footer>
-
-    <p>© 2026 Debryne New Age Bank</p>
-
-    <p>Banking Beyond Today.</p>
-
-</footer>
-
-</div><!-- FIREBASE --><script type="module">
+<script type="module">
 
     import { initializeApp }
         from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
@@ -100,6 +121,8 @@
 
     import {
         getAuth,
+        setPersistence,
+        browserLocalPersistence,
         signInWithEmailAndPassword
     }
         from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
@@ -107,25 +130,26 @@
 
     const firebaseConfig = {
 
-        apiKey: "AIzaSyChb5YDplwEUqxYBQdkpNTlqk6XyrZ9v6s",
+        apiKey: "AIzaSyChb5YDplwEUqxYBQdkpNTlqK6XyrZ9v6s",
 
         authDomain:
-        "debryne-new-age-bank.firebaseapp.com",
+            "debryne-new-age-bank.firebaseapp.com",
 
         projectId:
-        "debryne-new-age-bank",
+            "debryne-new-age-bank",
 
         storageBucket:
-        "debryne-new-age-bank.firebasestorage.app",
+            "debryne-new-age-bank.firebasestorage.app",
 
         messagingSenderId:
-        "712684201242",
+            "712684201242",
 
         appId:
-        "1:712684201242:web:5ab3dc41734dec5e3a78a3",
+            "1:712684201242:web:5ab3dc41734dec5e3a78a3",
 
         measurementId:
-        "G-NP062V5XTZ"
+            "G-NP062V5XTZ"
+
     };
 
 
@@ -134,26 +158,34 @@
     const auth = getAuth(app);
 
 
+    /* KEEP USER LOGGED IN */
+
+    await setPersistence(
+        auth,
+        browserLocalPersistence
+    );
+
+
     /* SHOW / HIDE PASSWORD */
 
     const showPassword =
         document.getElementById("showPassword");
 
-    const password =
+    const passwordInput =
         document.getElementById("password");
 
 
     showPassword.addEventListener("click", () => {
 
-        if (password.type === "password") {
+        if (passwordInput.type === "password") {
 
-            password.type = "text";
+            passwordInput.type = "text";
 
             showPassword.textContent = "🙈";
 
         } else {
 
-            password.type = "password";
+            passwordInput.type = "password";
 
             showPassword.textContent = "👁️";
 
@@ -167,75 +199,90 @@
     const loginForm =
         document.getElementById("loginForm");
 
-
-    loginForm.addEventListener("submit", async (event) => {
-
-        event.preventDefault();
+    const loginBtn =
+        document.getElementById("loginBtn");
 
 
-        const email =
-            document.getElementById("email").value.trim();
+    loginForm.addEventListener(
+        "submit",
+        async (event) => {
+
+            event.preventDefault();
 
 
-        const passwordValue =
-            document.getElementById("password").value;
+            const email =
+                document.getElementById("email")
+                .value
+                .trim();
+
+            const password =
+                passwordInput.value;
 
 
-        try {
+            loginBtn.disabled = true;
 
-            await signInWithEmailAndPassword(
-                auth,
-                email,
-                passwordValue
-            );
+            loginBtn.textContent = "LOGGING IN...";
 
 
-            alert(
-                "Login successful. Welcome back!"
-            );
+            try {
 
-
-            window.location.href =
-                "dashboard.html";
-
-
-        } catch (error) {
-
-            console.error(error);
-
-
-            if (
-                error.code ===
-                "auth/invalid-credential"
-            ) {
-
-                alert(
-                    "Incorrect email or password."
+                await signInWithEmailAndPassword(
+                    auth,
+                    email,
+                    password
                 );
 
 
-            } else if (
-                error.code ===
-                "auth/invalid-email"
-            ) {
-
-                alert(
-                    "Please enter a valid email address."
-                );
+                window.location.href =
+                    "dashboard.html";
 
 
-            } else {
+            } catch (error) {
 
-                alert(
-                    "Login failed: " +
-                    error.message
-                );
+                console.error(error);
+
+
+                loginBtn.disabled = false;
+
+                loginBtn.textContent = "LOGIN";
+
+
+                if (
+                    error.code ===
+                    "auth/invalid-credential"
+                ) {
+
+                    alert(
+                        "Incorrect email or password."
+                    );
+
+
+                } else if (
+                    error.code ===
+                    "auth/invalid-email"
+                ) {
+
+                    alert(
+                        "Please enter a valid email address."
+                    );
+
+
+                } else {
+
+                    alert(
+                        "Login failed: " +
+                        error.message
+                    );
+
+                }
 
             }
 
         }
+    );
 
-    });
+</script>
 
-</script></body>
+</body>
+
 </html>
