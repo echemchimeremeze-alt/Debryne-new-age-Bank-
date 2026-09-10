@@ -1,0 +1,231 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Profile | Debryne New Age Bank</title>
+
+<link
+    rel="stylesheet"
+    href="profile.css"
+>
+
+</head><body><div class="profile-app"><!-- HEADER -->
+
+<header class="profile-header">
+
+    <a href="dashboard.html" class="back-btn">
+        ←
+    </a>
+
+    <h2>My Profile</h2>
+
+</header>
+
+
+<!-- PROFILE -->
+
+<main class="profile-content">
+
+
+    <div class="profile-avatar">
+        👤
+    </div>
+
+
+    <h1 id="profileName">
+        Customer
+    </h1>
+
+
+    <p id="profileEmail">
+        Loading...
+    </p>
+
+
+    <!-- ACCOUNT INFORMATION -->
+
+    <section class="profile-card">
+
+        <h3>Account Information</h3>
+
+
+        <div class="profile-row">
+
+            <span>Full Name</span>
+
+            <strong id="fullName">
+                Loading...
+            </strong>
+
+        </div>
+
+
+        <div class="profile-row">
+
+            <span>Email Address</span>
+
+            <strong id="email">
+                Loading...
+            </strong>
+
+        </div>
+
+
+        <div class="profile-row">
+
+            <span>Account Number</span>
+
+            <strong id="accountNumber">
+                •••• •••• 4521
+            </strong>
+
+        </div>
+
+    </section>
+
+
+    <!-- SECURITY -->
+
+    <section class="profile-card">
+
+        <h3>Security</h3>
+
+
+        <button class="profile-action">
+            🔐 Change Password
+        </button>
+
+
+        <button class="profile-action">
+            🛡️ Security Settings
+        </button>
+
+    </section>
+
+
+    <!-- LOGOUT -->
+
+    <button id="logoutBtn" class="logout-btn">
+
+        🚪 Logout
+
+    </button>
+
+
+    <p class="bank-tagline">
+        Banking Beyond Today.
+    </p>
+
+
+</main>
+
+</div><!-- FIREBASE --><script type="module">
+
+    import { initializeApp }
+        from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+
+
+    import {
+        getAuth,
+        onAuthStateChanged,
+        signOut
+    }
+        from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+
+
+    const firebaseConfig = {
+
+        apiKey: "AIzaSyChb5YDplwEUqxYBQdkpNTlqK6XyrZ9v6s",
+
+        authDomain:
+        "debryne-new-age-bank.firebaseapp.com",
+
+        projectId:
+        "debryne-new-age-bank",
+
+        storageBucket:
+        "debryne-new-age-bank.firebasestorage.app",
+
+        messagingSenderId:
+        "712684201242",
+
+        appId:
+        "1:712684201242:web:5ab3dc41734dec5e3a78a3",
+
+        measurementId:
+        "G-NP062V5XTZ"
+
+    };
+
+
+    const app = initializeApp(firebaseConfig);
+
+    const auth = getAuth(app);
+
+
+    /* CHECK USER */
+
+    onAuthStateChanged(auth, (user) => {
+
+        if (user) {
+
+            const email =
+                user.email || "Customer";
+
+
+            document.getElementById("profileName")
+                .textContent = email.split("@")[0];
+
+
+            document.getElementById("profileEmail")
+                .textContent = email;
+
+
+            document.getElementById("fullName")
+                .textContent =
+                email.split("@")[0];
+
+
+            document.getElementById("email")
+                .textContent = email;
+
+        }
+
+        else {
+
+            window.location.href =
+                "login.html";
+
+        }
+
+    });
+
+
+    /* LOGOUT */
+
+    document.getElementById("logoutBtn")
+        .addEventListener("click", async () => {
+
+            try {
+
+                await signOut(auth);
+
+                window.location.href =
+                    "login.html";
+
+            }
+
+            catch (error) {
+
+                alert(
+                    "Unable to logout. Please try again."
+                );
+
+            }
+
+        });
+
+</script></body></html>
