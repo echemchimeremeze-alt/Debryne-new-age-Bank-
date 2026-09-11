@@ -1,20 +1,30 @@
-<!DOCTYPE html><html lang="en">
-<head>
+<!DOCTYPE html><html lang="en"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Login | Debryne New Age Bank</title>
 
 <link rel="stylesheet" href="style.css">
 
 </head><body><div class="bank-container"><div class="logo-area">
+
     <div class="logo">D</div>
+
     <h1>DEBRYNE</h1>
+
     <p>NEW AGE BANK</p>
+
 </div>
 
+
 <div class="welcome">
+
     <h2>Welcome Back 🏦</h2>
-    <p>Login to your Debryne New Age Bank account</p>
+
+    <p>
+        Login to your Debryne New Age Bank account
+    </p>
+
 </div>
+
 
 <form id="loginForm">
 
@@ -27,6 +37,7 @@
         required
     >
 
+
     <label>Password</label>
 
     <div class="password-box">
@@ -38,9 +49,15 @@
             required
         >
 
-        <button type="button" id="showPassword">👁️</button>
+        <button
+            type="button"
+            id="showPassword"
+        >
+            👁️
+        </button>
 
     </div>
+
 
     <button
         type="submit"
@@ -52,61 +69,80 @@
 
 </form>
 
+
 <div class="back-login">
+
     Don't have an account?
-    <a href="index.html">Create Account</a>
+
+    <a href="index.html">
+        Create Account
+    </a>
+
 </div>
+
 
 <p class="security">
     🔒 Your information is securely protected
 </p>
 
+
 <footer>
-    <p>© 2026 Debryne New Age Bank</p>
-    <p>Banking Beyond Today.</p>
+
+    <p>
+        © 2026 Debryne New Age Bank
+    </p>
+
+    <p>
+        Banking Beyond Today.
+    </p>
+
 </footer>
 
 </div><script type="module">
 
     import { initializeApp }
-    from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+        from "https://www.gstatic.com/firebasejs/12.18.0/firebase-app.js";
+
 
     import {
         getAuth,
         signInWithEmailAndPassword
     }
-    from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
+        from "https://www.gstatic.com/firebasejs/12.18.0/firebase-auth.js";
 
-
-    // FIREBASE CONFIG
 
     const firebaseConfig = {
 
-        apiKey: "AIzaSyChb5YDplwEUqxYBQdkpNTlqK6XyrZ9v6s",
+        apiKey:
+        "AIzaSyChb5YDplwEUqxYBQdkpNTlqK6XyrZ9v6s",
 
-        authDomain: "debryne-new-age-bank.firebaseapp.com",
+        authDomain:
+        "debryne-new-age-bank.firebaseapp.com",
 
-        projectId: "debryne-new-age-bank",
+        projectId:
+        "debryne-new-age-bank",
 
-        storageBucket: "debryne-new-age-bank.firebasestorage.app",
+        storageBucket:
+        "debryne-new-age-bank.firebasestorage.app",
 
-        messagingSenderId: "712684201242",
+        messagingSenderId:
+        "712684201242",
 
-        appId: "1:712684201242:web:5ab3dc41734dec5e3a78a3",
+        appId:
+        "1:712684201242:web:5ab3dc41734dec5e3a78a3",
 
-        measurementId: "G-NP062V5XTZ"
+        measurementId:
+        "G-NP062V5XTZ"
 
     };
 
-
-    // START FIREBASE
 
     const app = initializeApp(firebaseConfig);
 
     const auth = getAuth(app);
 
 
-    // SHOW / HIDE PASSWORD
+    /* SHOW / HIDE PASSWORD */
 
     const showPassword =
         document.getElementById("showPassword");
@@ -115,7 +151,7 @@
         document.getElementById("password");
 
 
-    showPassword.addEventListener("click", function () {
+    showPassword.addEventListener("click", () => {
 
         if (passwordInput.type === "password") {
 
@@ -134,7 +170,7 @@
     });
 
 
-    // LOGIN
+    /* LOGIN */
 
     const loginForm =
         document.getElementById("loginForm");
@@ -143,7 +179,7 @@
         document.getElementById("loginBtn");
 
 
-    loginForm.addEventListener("submit", async function(event) {
+    loginForm.addEventListener("submit", async (event) => {
 
         event.preventDefault();
 
@@ -157,70 +193,58 @@
 
         loginBtn.disabled = true;
 
-        loginBtn.textContent = "LOGGING IN...";
+        loginBtn.textContent =
+            "LOGGING IN...";
 
 
         try {
 
-            await signInWithEmailAndPassword(
-                auth,
-                email,
-                password
+            const userCredential =
+                await signInWithEmailAndPassword(
+                    auth,
+                    email,
+                    password
+                );
+
+
+            console.log(
+                "LOGIN SUCCESS:",
+                userCredential.user.email
             );
 
 
-            // LOGIN SUCCESS
+            alert(
+                "Login successful! Welcome back."
+            );
 
-            window.location.href = "dashboard.html";
+
+            window.location.href =
+                "dashboard.html";
 
 
         } catch (error) {
 
-            console.error("Firebase Login Error:", error);
+            console.error(
+                "LOGIN ERROR:",
+                error
+            );
+
 
             loginBtn.disabled = false;
 
-            loginBtn.textContent = "LOGIN";
+            loginBtn.textContent =
+                "LOGIN";
 
 
-            if (error.code === "auth/invalid-credential") {
-
-                alert("Incorrect email or password.");
-
-            }
-
-            else if (error.code === "auth/invalid-email") {
-
-                alert("Please enter a valid email address.");
-
-            }
-
-            else if (error.code === "auth/user-not-found") {
-
-                alert("No account was found with this email.");
-
-            }
-
-            else if (error.code === "auth/wrong-password") {
-
-                alert("Incorrect password.");
-
-            }
-
-            else {
-
-                alert(
-                    "Login failed:\n\n" +
-                    error.code +
-                    "\n\n" +
-                    error.message
-                );
-
-            }
+            alert(
+                "LOGIN ERROR:\n\n" +
+                error.code +
+                "\n\n" +
+                error.message
+            );
 
         }
 
     });
 
-</script></body>
-</html>
+</script></body></html>
